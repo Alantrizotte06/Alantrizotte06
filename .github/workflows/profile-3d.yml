@@ -14,7 +14,7 @@ jobs:
     name: generate-github-profile-3d-contrib
     steps:
       - uses: actions/checkout@v3
-      - uses: yoshi38688/github-profile-3d-contrib@main
+      - uses: green-same/github-profile-3d-contrib@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: Alantrizotte06
