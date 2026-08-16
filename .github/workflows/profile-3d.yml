@@ -2,7 +2,7 @@ name: GitHub-Profile-3D-Contrib
 
 on:
   schedule:
-    - cron: "0 */12 * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -15,11 +15,32 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Generate 3D Profile
-        uses: docker://yoshi38688/github-profile-3d-contrib:latest
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Checkout generator repo
+        uses: actions/checkout@v3
+        with:
+          repository: yoshi38688/github-profile-3d-contrib
+          path: generator-src
+
+      - name: Install and Run Generator
+        run: |
+          cd generator-src
+          npm ci
+          npm run build
+          node dist/index.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: Alantrizotte06
+
+      - name: Move generated files
+        run: |
+          mkdir -p profile-3d-contrib
+          mv generator-src/profile-3d-contrib/* profile-3d-contrib/ || true
+          rm -rf generator-src
 
       - name: Commit & Push
         run: |
