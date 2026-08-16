@@ -24,3 +24,5 @@ Aprimorando minhas habilidades em Arquitetura de Software, Docker/Containers, De
   &nbsp;&nbsp;
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="38" width="38" alt="MySQL" />
 </p>
+
+![](./profile-3d-contrib/profile-night-view.svg)
